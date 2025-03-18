@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.jogadores {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+.dado {
+  width: 100px;
+  height: 100px;
+}
+
+.botao {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.botao:hover {
+  background-color: #45a049;
+}

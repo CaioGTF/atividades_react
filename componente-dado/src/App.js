@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../src/App.css";
+import "./App.css";
 
 const Dado = ({ valor }) => {
   const imagens = {
@@ -14,44 +14,21 @@ const Dado = ({ valor }) => {
   return <img src={imagens[valor]} alt={`Dado ${valor}`} className="dado" />;
 };
 
-export default function App() {
-  const [valorJogador1, setValorJogador1] = useState(1);
-  const [valorJogador2, setValorJogador2] = useState(1);
-  const [resultado, setResultado] = useState("");
+function App() {
+  const [valorDado, setValorDado] = useState(1);
 
-  const rolarDados = () => {
-    const novoValor1 = Math.floor(Math.random() * 6) + 1;
-    const novoValor2 = Math.floor(Math.random() * 6) + 1;
-    
-    setValorJogador1(novoValor1);
-    setValorJogador2(novoValor2);
-
-    if (novoValor1 > novoValor2) {
-      setResultado("🎉 Jogador 1 venceu!");
-    } else if (novoValor2 > novoValor1) {
-      setResultado("🎉 Jogador 2 venceu!");
-    } else {
-      setResultado("🤝 Empate!");
-    }
+  const rolarDado = () => {
+    const novoValor = Math.floor(Math.random() * 6) + 1;
+    setValorDado(novoValor);
   };
 
   return (
     <div className="container">
-      <h1>🎲 Jogo de Dados - Dois Jogadores 🎲</h1>
-      <div className="jogadores">
-        <div>
-          <h2>Jogador 1</h2>
-          <Dado valor={valorJogador1} />
-        </div>
-        <div>
-          <h2>Jogador 2</h2>
-          <Dado valor={valorJogador2} />
-        </div>
-      </div>
-      <button onClick={rolarDados} className="botao">Rolar Dados</button>
-      <h2>{resultado}</h2>
+      <h1>Jogue o Dado!</h1>
+      <Dado valor={valorDado} />
+      <button onClick={rolarDado} className="botao">Rolar Dado</button>
     </div>
   );
 }
 
-
+export default App;
