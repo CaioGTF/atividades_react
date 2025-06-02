@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <div className="p-8">
-      <h1 className="text-4xl font-bold">Bem-vindo ao meu Portfólio</h1>
+    <div>
+      <h1>Bem vindo ao portfólio de Caio Gabriel - Analista de Bioinformática</h1>
     </div>
   );
 }
