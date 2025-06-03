@@ -7,7 +7,7 @@ interface Tentativa {
   numero: number;
 }
 
-// Função para calcular o resultado da tentativa
+
 const calcularResultado = (tentativa: string, senha: string): string => {
   let touros = 0;
   let vacas = 0;
@@ -27,7 +27,7 @@ const calcularResultado = (tentativa: string, senha: string): string => {
   return `${touros}T ${vacas}V`;
 };
 
-// Valida se a tentativa é válida
+
 const validarTentativa = (valor: string): string | null => {
   if (valor.length !== 4) {
     return 'A senha deve ter exatamente 4 dígitos.';
@@ -45,7 +45,7 @@ const validarTentativa = (valor: string): string | null => {
   return null;
 };
 
-// Componente principal do jogo
+
 const Jogo = () => {
   const [senha, setSenha] = useState('');
   const [tentativa, setTentativa] = useState('');
@@ -55,7 +55,7 @@ const Jogo = () => {
   const [mensagem, setMensagem] = useState('');
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
-  // Gera uma nova senha com 4 dígitos únicos
+
   const gerarSenha = useCallback(() => {
     let novaSenha = '';
     const digitos = '0123456789';
@@ -70,7 +70,7 @@ const Jogo = () => {
     return novaSenha;
   }, []);
 
-  // Reinicia o jogo
+
   const novoJogo = useCallback(() => {
     const novaSenha = gerarSenha();
     setSenha(novaSenha);
@@ -83,12 +83,12 @@ const Jogo = () => {
     console.log('Nova senha gerada:', novaSenha);
   }, [gerarSenha]);
 
-  // Inicializa o jogo ao carregar
+
   useEffect(() => {
     novoJogo();
   }, [novoJogo]);
 
-  // Submete a tentativa do jogador
+
   const submeterTentativa = () => {
     if (jogoTerminado) return;
 
@@ -123,13 +123,13 @@ const Jogo = () => {
     setTentativa('');
   };
 
-  // Revela a senha atual
+
   const revelarSenha = () => {
     alert(`A senha atual é: ${senha}`);
     setMostrarSenha(true);
   };
 
-  // Permite enviar com Enter
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       submeterTentativa();

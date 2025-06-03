@@ -1,40 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown, Github, Briefcase, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
-  const [quote, setQuote] = useState({ text: '', author: '' });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    // Garante que só executa no cliente
-    if (typeof window !== 'undefined') {
-      fetchQuote();
-    }
-  }, []);
-
-  const fetchQuote = async () => {
-    try {
-      const res = await fetch('https://api.quotable.io/random?tags=science,technology');
-
-      if (!res.ok) {
-        throw new Error(`Erro na API: status ${res.status}`);
-      }
-
-      const data = await res.json();
-      setQuote({ text: data.content, author: data.author });
-    } catch (err) {
-      console.error('Erro ao buscar citação:', err);
-      setQuote({
-        text: 'A ciência é uma forma de pensar muito mais do que um corpo de conhecimento.',
-        author: 'Carl Sagan',
-      });
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [quote] = useState({
+    text: 'A ciência é uma forma de pensar muito mais do que um corpo de conhecimento.',
+    author: 'Carl Sagan',
+  });
 
   return (
     <div className="min-h-screen pt-16">
@@ -50,16 +22,11 @@ export default function Home() {
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8">Analista de Bioinformática</p>
 
-            {!loading ? (
-              <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 mb-8">
-                <blockquote className="text-lg italic text-gray-700 mb-2">"{quote.text}"</blockquote>
-                <cite className="text-sm text-gray-500">— {quote.author}</cite>
-              </div>
-            ) : error ? (
-              <p className="text-yellow-600">Não foi possível carregar a citação.</p>
-            ) : (
-              <p className="text-gray-500">Carregando...</p>
-            )}
+            {/* Citação estática */}
+            <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 mb-8">
+              <blockquote className="text-lg italic text-gray-700 mb-2">"{quote.text}"</blockquote>
+              <cite className="text-sm text-gray-500">— {quote.author}</cite>
+            </div>
           </div>
 
           {/* Botões */}
@@ -79,7 +46,7 @@ export default function Home() {
               Formação
             </Link>
             <a
-              href="https://github.com/CaioGTF"
+              href="https://github.com/CaioGTF" 
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-all duration-300 hover:scale-105"

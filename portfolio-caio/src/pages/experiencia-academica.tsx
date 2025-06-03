@@ -1,4 +1,4 @@
-// src/pages/experiencia-academica.tsx
+
 import { GraduationCap, Calendar, MapPin, BookOpen } from 'lucide-react';
 
 const ExperienciaAcademica = () => {

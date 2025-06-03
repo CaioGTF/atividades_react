@@ -24,9 +24,8 @@ type Props = {
   repositories: Repo[];
 };
 
-// Função que fornece os dados para a página
+
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  // Repositórios simulados - substitua por uma API real se quiser
   const repositories: Repo[] = [
     {
       id: 1,
