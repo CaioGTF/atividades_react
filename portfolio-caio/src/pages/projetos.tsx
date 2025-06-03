@@ -24,8 +24,45 @@ type Props = {
   repositories: Repo[];
 };
 
+// Função que fornece os dados para a página
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  // Repositórios simulados - substitua por uma API real se quiser
+  const repositories: Repo[] = [
+    {
+      id: 1,
+      name: "cat-color-predictor",
+      description: "Software de identificação de cor de gatos usando machine learning.",
+      html_url: "https://github.com/CaioGTF/cat-color-predictor", 
+      language: "Python",
+      stargazers_count: 10,
+    },
+    {
+      id: 2,
+      name: "mtsearch",
+      description: "Ferramenta para extração de genes mitocondriais de arquivos GenBank.",
+      html_url: "https://github.com/CaioGTF/mtsearch", 
+      language: "Python",
+      stargazers_count: 8,
+    },
+    {
+      id: 3,
+      name: "delfinder",
+      description: "Pipeline para detecção de deleções em sequências genéticas.",
+      html_url: "https://github.com/CaioGTF/delfinder", 
+      language: "Python",
+      stargazers_count: 15,
+    },
+  ];
+
+  return {
+    props: {
+      repositories,
+    },
+  };
+};
+
 const Projetos = ({ repositories }: Props) => {
-  const projetos: Projeto[] = [
+  const projetos = [
     {
       titulo: "Software de Identificação de Cor em Felinos",
       categoria: "Bioinformática",
@@ -197,29 +234,4 @@ const Projetos = ({ repositories }: Props) => {
   );
 };
 
-const repositories: Repo[] = [
-  {
-    id: 1,
-    name: "cat-color-predictor",
-    description: "Software de identificação de cor de gatos usando machine learning.",
-    html_url: "https://github.com/CaioGTF/cat-color-predictor",
-    language: "Python",
-    stargazers_count: 10,
-  },
-  {
-    id: 2,
-    name: "mtsearch",
-    description: "Ferramenta para extração de genes mitocondriais de arquivos GenBank.",
-    html_url: "https://github.com/CaioGTF/mtsearch",
-    language: "Python",
-    stargazers_count: 8,
-  },
-  {
-    id: 3,
-    name: "delfinder",
-    description: "Pipeline para detecção de deleções em sequências genéticas.",
-    html_url: "https://github.com/CaioGTF/delfinder",
-    language: "Python",
-    stargazers_count: 15,
-  },
-];
+export default Projetos;
