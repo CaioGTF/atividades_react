@@ -5,6 +5,7 @@ import Link from 'next/link';
 export default function Home() {
   const [quote, setQuote] = useState({ text: '', author: '' });
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     // Garante que só executa no cliente
@@ -15,20 +16,21 @@ export default function Home() {
 
   const fetchQuote = async () => {
     try {
-      const response = await fetch('https://api.quotable.io/random?tags=science,technology');
+      const res = await fetch('https://api.quotable.io/random?tags=science,technology');
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!res.ok) {
+        throw new Error(`Erro na API: status ${res.status}`);
       }
 
-      const data = await response.json();
+      const data = await res.json();
       setQuote({ text: data.content, author: data.author });
-    } catch (error) {
-      console.error('Erro ao buscar citação:', error);
+    } catch (err) {
+      console.error('Erro ao buscar citação:', err);
       setQuote({
         text: 'A ciência é uma forma de pensar muito mais do que um corpo de conhecimento.',
         author: 'Carl Sagan',
       });
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -47,16 +49,20 @@ export default function Home() {
               <span className="block text-blue-600">Tavares Ferreira</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8">Analista de Bioinformática</p>
+
             {!loading ? (
-              <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 mb-8 animate-fade-in">
+              <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 mb-8">
                 <blockquote className="text-lg italic text-gray-700 mb-2">"{quote.text}"</blockquote>
                 <cite className="text-sm text-gray-500">— {quote.author}</cite>
               </div>
+            ) : error ? (
+              <p className="text-yellow-600">Não foi possível carregar a citação.</p>
             ) : (
-              <p className="text-gray-500">Carregando citação...</p>
+              <p className="text-gray-500">Carregando...</p>
             )}
           </div>
 
+          {/* Botões */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <Link
               href="/projetos"
