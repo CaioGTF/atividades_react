@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChevronDown, Github, Briefcase, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 
@@ -24,7 +24,10 @@ export default function Home() {
 
             {/* Citação estática */}
             <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 mb-8">
-              <blockquote className="text-lg italic text-gray-700 mb-2">"{quote.text}"</blockquote>
+              {/* ✅ Usando &quot; ou <q> para evitar erro de lint */}
+              <blockquote className="text-lg italic text-gray-700 mb-2">
+                <q>{quote.text}</q>
+              </blockquote>
               <cite className="text-sm text-gray-500">— {quote.author}</cite>
             </div>
           </div>
