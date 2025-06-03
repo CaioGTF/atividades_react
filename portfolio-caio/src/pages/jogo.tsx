@@ -7,7 +7,6 @@ interface Tentativa {
   numero: number;
 }
 
-
 const calcularResultado = (tentativa: string, senha: string): string => {
   let touros = 0;
   let vacas = 0;
@@ -27,7 +26,6 @@ const calcularResultado = (tentativa: string, senha: string): string => {
   return `${touros}T ${vacas}V`;
 };
 
-
 const validarTentativa = (valor: string): string | null => {
   if (valor.length !== 4) {
     return 'A senha deve ter exatamente 4 dígitos.';
@@ -45,7 +43,6 @@ const validarTentativa = (valor: string): string | null => {
   return null;
 };
 
-
 const Jogo = () => {
   const [senha, setSenha] = useState('');
   const [tentativa, setTentativa] = useState('');
@@ -53,8 +50,6 @@ const Jogo = () => {
   const [jogatinas, setJogatinas] = useState(0);
   const [jogoTerminado, setJogoTerminado] = useState(false);
   const [mensagem, setMensagem] = useState('');
-  const [mostrarSenha, setMostrarSenha] = useState(false);
-
 
   const gerarSenha = useCallback(() => {
     let novaSenha = '';
@@ -70,7 +65,6 @@ const Jogo = () => {
     return novaSenha;
   }, []);
 
-
   const novoJogo = useCallback(() => {
     const novaSenha = gerarSenha();
     setSenha(novaSenha);
@@ -79,15 +73,12 @@ const Jogo = () => {
     setJogatinas(0);
     setJogoTerminado(false);
     setMensagem('');
-    setMostrarSenha(false);
     console.log('Nova senha gerada:', novaSenha);
   }, [gerarSenha]);
-
 
   useEffect(() => {
     novoJogo();
   }, [novoJogo]);
-
 
   const submeterTentativa = () => {
     if (jogoTerminado) return;
@@ -123,12 +114,10 @@ const Jogo = () => {
     setTentativa('');
   };
 
-
   const revelarSenha = () => {
     alert(`A senha atual é: ${senha}`);
-    setMostrarSenha(true);
+    // Se quiser usar mostrarSenha no futuro, pode reativar aqui
   };
-
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {

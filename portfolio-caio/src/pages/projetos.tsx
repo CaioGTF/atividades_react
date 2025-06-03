@@ -24,7 +24,7 @@ type Props = {
   repositories: Repo[];
 };
 
-
+// Função que fornece os dados
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const repositories: Repo[] = [
     {
@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       id: 2,
       name: "mtsearch",
       description: "Ferramenta para extração de genes mitocondriais de arquivos GenBank.",
-      html_url: "https://github.com/CaioGTF", 
+      html_url: "https://github.com/CaioGTF",  
       language: "Python",
       stargazers_count: 8,
     },
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   };
 };
 
-const Projetos = ({ repositories }: Props) => {
+export default function Projetos({ repositories }: Props) {
   const projetos = [
     {
       titulo: "Software de Identificação de Cor em Felinos",
@@ -143,10 +143,7 @@ const Projetos = ({ repositories }: Props) => {
           <h2 className="text-3xl font-bold text-center mb-8">Projetos Destacados</h2>
           <div className="grid lg:grid-cols-2 gap-8">
             {projetos.map((projeto, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-              >
+              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
                 <div className={`bg-gradient-to-r ${projeto.cor} p-6 text-white`}>
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">{projeto.icone}</div>
@@ -231,6 +228,4 @@ const Projetos = ({ repositories }: Props) => {
       </div>
     </div>
   );
-};
-
-export default Projetos;
+}
